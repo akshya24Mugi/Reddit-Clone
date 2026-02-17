@@ -68,5 +68,11 @@ pipeline {
 		steps {
 			script {
 				sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshaya1234/reddit-clone-pipeline:latest --no-progress --scanners vuln --exit-code 0 --severirty HIGH, CRITICAL --format table > trivyimage.txt')
+	
+			}
+		}
+	}
+			
+			
 	}
 }	
