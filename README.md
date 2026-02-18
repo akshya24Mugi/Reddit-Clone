@@ -1,7 +1,2 @@
 # Reddit Clone App on Kubernetes
-Test 200
-
-
-
-
-
+Working on this application- Will update the readme file after it is done.
