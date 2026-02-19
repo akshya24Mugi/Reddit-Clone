@@ -49,40 +49,48 @@ pipeline {
                 sh "trivy fs . > trivyfs.txt"
              }
          }
-	 stage("Build & Push Docker Image") {
-             steps {
-                 script {
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image = docker.build "${IMAGE_NAME}"
-                     }
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image.push("${IMAGE_TAG}")
-                         docker_image.push('latest')
-                     }
-                 }
-             }
-         }
+		 stage("Build & Push Docker Image") {
+	             steps {
+	                 script {
+	                     docker.withRegistry('',DOCKER_PASS) {
+	                         docker_image = docker.build "${IMAGE_NAME}"
+	                     }
+	                     docker.withRegistry('',DOCKER_PASS) {
+	                         docker_image.push("${IMAGE_TAG}")
+	                         docker_image.push('latest')
+	                     }
+	                 }
+	             }
+	         }
 
 
-	stage("Trivy Image Scan") {
-		steps {
-			script {
-				sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshaya1234/reddit-clone-pipeline:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+		stage("Trivy Image Scan") {
+			steps {
+				script {
+					sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshaya1234/reddit-clone-pipeline:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+		
+				}
+			}
+		}
+
+
+		stage ('Cleanup Artifacts') {
+			steps {
+				script {
+					sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+					sh "docker rmi ${IMAGE_NAME}:latest"
+				}
+			}
+		}
+
+		stage("Trigger CD Pipeline") {
+	            steps {
+	                script {
+	                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-52-66-203-23.ap-south-1.compute.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
+	                }
+	            }
+		}	
 	
-			}
-		}
-	}
-
-
-	stage ('Cleanup Artifacts') {
-		steps {
-			script {
-				sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-				sh "docker rmi ${IMAGE_NAME}:latest"
-			}
-		}
-	}
-
 	}
 	
 	post {
@@ -96,6 +104,5 @@ pipeline {
 				attachmentsPattern: 'trivyfs.txt,trivyimage.txt'	
 		}
 	}	
-			
-	
+				
 }	
