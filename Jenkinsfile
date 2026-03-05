@@ -73,6 +73,23 @@ pipeline {
              }          
           }
       }  
+
+      stage("Trivy Image Scan") {
+          steps {
+              script {
+                   sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image akshaya1234/reddit-clone-app:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH, CRITICAL --format table > trivyimage.txt')
+              }
+          }
+      } 
+
+      stage("Cleanup artifacts") {
+          steps {
+              script {
+                   sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                   sh "docker rmi ${IMAGE_NAME}:latest"
+              }
+          }
+      } 
     
     }
 
