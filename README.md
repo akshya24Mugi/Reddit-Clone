@@ -1,5 +1,4 @@
 # Reddit-Clone
 Reddit-Clone Application 
 Working on this project: will be updating it soon !
-Yo YO Yo !!
-Mr. White!!
+Testing the CI/CD Trigger via the remote server.
