@@ -1,16 +1,51 @@
-# Reddit-Clone
-Reddit-Clone Application 
+# Reddit Clone CI/CD Deployment on AWS EKS using Jenkins, ArgoCD, Prometheus & Grafana
+## Project Overview
 
-Working on this project: will be updating it soon !
+This project demonstrates an end-to-end DevOps pipeline for deploying a Reddit Clone application using modern DevOps practices and tools.
 
-Testing the CI/CD Trigger via the remote server.
+The goal of this project is to automate the build, analysis, containerization, monitoring, and deployment of the application using a CI/CD pipeline integrated with GitOps.
 
-Test_number - 2
+The pipeline includes:
+- Infrastructure provisioning using Terraform
+- Continuous Integration using Jenkins
+- Code Quality Analysis using SonarQube
+- Containerization using Docker
+- Kubernetes deployment using AWS EKS
+- Continuous Deployment using ArgoCD (GitOps)
+- Monitoring using Prometheus and Grafana
+- Image scanning using Trivy
 
-Test_number - 3 (The image tag should be "1.0.0-8").
+---
 
-Test_number - 4 Trying to add the name of the docker_image just in the "image" key-value pair in the deployment.yaml file. 
+## Tools and Technologies used:
+| Tool       | Purpose                      |
+| ---------- | ---------------------------- |
+| Terraform  | Infrastructure Provisioning  |
+| AWS EC2    | Jenkins Server               |
+| Jenkins    | Continuous Integration       |
+| SonarQube  | Code Quality Analysis        |
+| Docker     | Containerization             |
+| DockerHub  | Container Registry           |
+| Kubernetes | Container Orchestration      |
+| AWS EKS    | Managed Kubernetes Cluster   |
+| ArgoCD     | GitOps Continuous Deployment |
+| Prometheus | Monitoring                   |
+| Grafana    | Visualization & Metrics      |
 
-Test_number - 5, The IMAGE_PLACEHOLDER method did not work, now we are avoiding the dummy string method and will just add the 'image' in the deployment file and will try to update it.
+Will add the Architecture diagram here.
 
-Test_number - 6, Rolled back to the previous version of the code.
+---
+
+
+## Project Implementation phases
+
+---
+
+## Phase 1 -  Infrastructure provisioning using Terraform
+
+The first phase involved launching an AWS EC2 instance using Terraform automation. Terraform was used to create: 
+- EC2 Instance
+- Security Group
+- Network Configuration
+
+The "main.tf" file contains the terraform script and the details about the instance and the security group.
