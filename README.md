@@ -33,7 +33,12 @@ The pipeline includes:
 | Grafana    | Visualization & Metrics      |
 | Trivy      | Container Image Security Scanning |
 
-Will add the Architecture diagram here and also add trivy to scan the image quality
+---
+## Architecture:
+
+
+![Service-Architecure](Screenshots/Services-Architecture.png)
+
 
 ---
 
@@ -51,7 +56,11 @@ The first phase involved launching an AWS EC2 instance using Terraform automatio
 
 The "main.tf" file contains the terraform script and the details about the instance and the security group.
 
-add the screenshot of the intance here.
+
+## EC2_instance and the K8S nodes:
+
+
+![EC2-Instance and Nodes](Screenshots/Instance_and_Nodes.png)
 
 ---
 
@@ -68,7 +77,11 @@ Add the script used.
 
 This integration allows Jenkins pipelines to perform code quality analysis during the build process.
 
-Add the sonarQube Screenshot here.
+
+## SonarQube Integration
+
+![SonarQube](Screenshots/SonarQube-Test.png)
+
 
 ---
 
@@ -90,6 +103,12 @@ The CI Pipeline performs the following tasks:
 
 The Trivy scan generates a vulnerability report, which helps identify security risks in container images.
 
+
+## Docker Hub:
+
+![DockerHub](Screenshots/Docker_images_deployed.png)
+
+
 ---
 
 ## Phase 4 — Email Notification with Trivy Report
@@ -109,7 +128,10 @@ The email sent after the CI pipeline includes:
 
 This allows quick visibility into build results and security vulnerabilities.
 
-Add the screenshot from the mail here.
+
+## Email along with the trivy image scanned result:
+
+
 
 
 ---
@@ -209,7 +231,18 @@ The dashboards on grafana were imported from promethues data source using the fo
 
 After the dashboards are created, we can monitor data on dashboards which is coming via prometheus.
 
-Add the prometheus and grafana screenshots here!!
+
+
+## Prometheus endpoint and grafana dashboards:
+
+![Prometheus and Grafana Dashboards](Screenshots/Prometheus_and_grafana_service.png)
+
+![Prometheus Endpoint](Screenshots/Prometheus_endpoint.png)
+
+![Grafana dashboard](Screenshots/Grafana_dashboard.png)
+
+![Grafana dashboard - 1](Screenshots/Grafana_dashboard_1.png)
+
 
 ---
 
@@ -241,9 +274,6 @@ $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"
 $ kubectl get svc -n argocd
 ```
 
-After this we login through the CLI and ArgoCD web server.
-
-add the screenshot here of the ArgoCD server!
 
 ---
 
@@ -266,4 +296,7 @@ Also, one more important thing, we added a webhook in this repo and then added t
 ## Final Deployment
 
 The Reddit Clone application is successfully deployed on the AWS EKS cluster and exposed using a LoadBalancer service.
-add the screenshot of the REddit home page.
+
+
+## Reddit Homepage
+![Reddit-HomePage](Screenshots/Reddit-Page.png)
