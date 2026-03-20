@@ -302,3 +302,12 @@ The Reddit Clone application is successfully deployed on the AWS EKS cluster and
 
 ## Reddit Homepage
 ![Reddit-HomePage](Screenshots/Reddit-Page.png)
+
+
+
+
+---
+
+Thank you for visiting!!
+Best Regards,
+Akshay - MAMBA OUT !!
