@@ -80,7 +80,7 @@ This integration allows Jenkins pipelines to perform code quality analysis durin
 
 ## SonarQube Integration
 
-![SonarQube](Screenshots/SonarQube-Test.png)
+![Sonar Qube](Screenshots/SonarQube_Test.png)
 
 
 ---
@@ -131,6 +131,8 @@ This allows quick visibility into build results and security vulnerabilities.
 
 ## Email along with the trivy image scanned result:
 
+
+![Trivy results sent via mail](Screenshots/Trivy_Result.png)
 
 
 
